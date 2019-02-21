@@ -55,11 +55,24 @@ class Point{
 }
 
 
-function countLabel(widthArray, heightArray, centerX, centerY, radius) {
+// function countLabel(widthArray, heightArray, centerX, centerY, radius) {
+//   var count = 0;
+//
+//   for (var i = 0; i < widthArray.length; i++) {
+//     var d = dist(widthArray[i], heightArray[i], centerX, centerY);
+//     if (d < radius) {
+//       count ++;
+//     }
+//   }
+//
+//   return count;
+// }
+
+function countLabel(objectArray, centerX, centerY, radius) {
   var count = 0;
 
-  for (var i = 0; i < widthArray.length; i++) {
-    var d = dist(widthArray[i], heightArray[i], centerX, centerY);
+  for (var i = 0; i < objectArray.length; i++) {
+    var d = dist(objectArray[i].startX, objectArray[i].startY, centerX, centerY);
     if (d < radius) {
       count ++;
     }
@@ -74,8 +87,11 @@ class Circle{
         this.startX = startX;
         this.startY = startY;
 
-        var posCount = countLabel(posWidths, posHeights, this.startX, this.startY, this.radius);
-        var negCount = countLabel(negWidths, negHeights, this.startX, this.startY, this.radius);
+        // var posCount = countLabel(posWidths, posHeights, this.startX, this.startY, this.radius);
+        // var negCount = countLabel(negWidths, negHeights, this.startX, this.startY, this.radius);
+
+        var posCount = countLabel(posObjects, this.startX, this.startY, this.radius);
+        var negCount = countLabel(negObjects, this.startX, this.startY, this.radius);
 
         // red = color(241,12,73, random(20, 200));
         // blue = color(51,145,148,random(20, 200));
@@ -110,10 +126,12 @@ class Circle{
       this.startY = this.startY += random(0, 4);
       this.startX = this.startX -= random(0, 4);
       this.startX = this.startX += random(0, 4);
-      // this.startY = this.startY -= random(0, 0.5);
 
-      var posCount = countLabel(posWidths, posHeights, this.startX, this.startY, this.radius);
-      var negCount = countLabel(negWidths, negHeights, this.startX, this.startY, this.radius);
+      // var posCount = countLabel(posWidths, posHeights, this.startX, this.startY, this.radius);
+      // var negCount = countLabel(negWidths, negHeights, this.startX, this.startY, this.radius);
+
+      var posCount = countLabel(posObjects, this.startX, this.startY, this.radius);
+      var negCount = countLabel(negObjects, this.startX, this.startY, this.radius);
 
       red = color(241,12,73, 80);
       blue = color(51,145,148, 80);
